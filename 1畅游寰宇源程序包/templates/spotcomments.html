@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <div class="col-md-4" style="margin:auto">
+    <br>
+
+        <form action="{% url 'searchcomments' spot_name search%}" method="post" class="subscribe">
+            <div class="form-group">
+                <button type="submit"><span class="ion-ios-arrow-thin-right"></span></button>
+                <input type="text" id="search" name="search" placeholder="搜索" value="{{ keyword }}" class="form-control">
+            </div>
+            {% csrf_token %}
+        </form>
+    </div>
+    <div class="pt-5">
+
+        <h3 class="mb-5">共 {{ count }} 条评论 <a href="{% url 'travel' %}" class="btn btn-primary btn-outline-primary btn-sm">跳转到旅行搜罗</a></h3>
+        <ul class="comment-list">
+            {% for comment in spot_comments.object_list %}
+                <li class="comment">
+                    {#                <div class="vcard">#}
+                    {#                    <img src="images/person_1.jpg" alt="Image placeholder">#}
+                    {#                </div>#}
+                    <div class="comment-body">
+                        <h3>{{ comment.user }}</h3>
+                        <h4>推荐指数：{{ comment.Emotional_score }}    </h4>
+
+                        <div class="meta" style="font-size: larger">{{ comment.add_time }} 来源网站：{{ comment.spot_from }}</div>
+                        <p>{{ comment.comments }}</p>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+
+        <div class="col-md-12 text-center">
+            <nav aria-label="Page navigation example">
+
+
+                <ul class="pagination">
+                    {#       显示上一页       #}
+                    {% if spot_comments.has_previous %}
+                        <li class="page-item">
+                            <a class="page-link"
+                               href="?{{ spot_comments.previous_page_number.querystring }}">上一页</a>
+                        </li>
+                    {% endif %}
+
+                    {% for page in spot_comments.pages %}
+                        {% if page %}
+                            {% ifequal page spot_comments.number %}
+                                {# 如果是当前页，填充自己逻辑#}
+                                <li class="active"><a href="?{{ page.querystring }}">{{ page }}</a></li>
+                            {% else %}
+                                <li><a href="?{{ page.querystring }}" class="page-link">{{ page }}</a></li>
+                            {% endifequal %}
+                        {% else %}
+                            <li class="none"><a href="">...</a></li>
+                        {% endif %}
+                    {% endfor %}
+                    {% if spot_comments.has_next %}
+                        {#   下一页逻辑    #}
+                        <li class="page-item">
+                            <a class="page-link" href="?{{ spot_comments.next_page_number.querystring }}">下一页</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+
+        {#    分页逻辑     #}
+
+        <!-- END comment-list -->
+    </div>
+{% endblock %}

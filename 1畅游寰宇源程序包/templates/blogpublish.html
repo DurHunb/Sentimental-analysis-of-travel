@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block content %}
+    {% load staticfiles %}
+    <section class="site-section bg-light">
+        <form action="{% url 'blog' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="container">
+                <div class="span2">
+                    <label for="message">博客 </label>
+                </div>
+
+                <input name="title" style="width: 50%" placeholder="请输入博客标题">
+                <br>
+                <div class="span2">
+                    <br>
+                    <label>上传封面</label>
+                    <br>
+                    <input type="file" name="picture" class="input" required>
+                    <br>
+                    <br>
+
+                </div>
+                <div class="span2">
+                    <label for="message">简介 </label>
+                </div>
+                <input type="text" name="desc" style="width:100%">
+                <div class="span2">
+
+                    <label for="message">博客内容 </label>
+                </div>
+
+                <textarea id="container" name="content" style="width:100%;height: 100mm"></textarea>
+                <p><br></p>
+
+                <p><input type="submit" value="发表博客" class="btn btn-primary btn-outline-primary btn-sm"></p>
+            </div>
+        </form>
+    </section>
+    <!-- END section -->
+
+
+
+<script src="{% static '/ueditor/ueditor.config.js' %}" type="text/javascript"></script>
+
+<script src="{% static '/ueditor/ueditor.all.js' %}" type="text/javascript"></script>
+
+<script type="text/javascript">
+        var ue = UE.getEditor('container',{
+            serverUrl: "/ueditor/controller/?imagePathFormat=&filePathFormat="
+        });
+</script>
+
+
+{% endblock %}

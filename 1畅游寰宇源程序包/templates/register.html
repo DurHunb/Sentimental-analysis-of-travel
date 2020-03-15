@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% block content %}
+    <section class="site-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h2 class="mb-5">请注册</h2>
+                    <form action="/register/" method="post">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-sm-6 form-group">
+
+                                <label for="">用户名</label>
+                                <div style="position: relative;">
+                                    <input type='text' class="form-control" id='username' name="username"/>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-md-6 form-group">
+                                <label for="">密码</label>
+                                <div style="position: relative;">
+                                    <input type='password' class="form-control" id='password1' name="password1"/>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 form-group">
+                                <label for="">确认密码</label>
+                                <div style="position: relative;">
+                                    <input type='password' class="form-control" id='password2' name="password2"/>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div >
+                            {#    <input type="text" name="captcha" id="captcha"/>#}
+                            验证码: {{ captcha_form.captcha }}
+                         </div>
+
+                        <div class="row">
+                            <div class="col-md-6 form-group">
+                                <label style="color: red">{{ msg }}</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 form-group">
+                                <input type="submit" value="注册" class="btn btn-primary">
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <a href="{% url 'login' %}" class="btn btn-primary">返回登录</a>
+                            </div>
+                        </div>
+                    </form>
+                    {% if messages %}
+                            <script>
+                                {% for msg in messages %}
+                                    alert('{{ msg.message }}');
+                                {% endfor %}
+                            </script>
+                    {% endif %}
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- END section -->
+{% endblock %}

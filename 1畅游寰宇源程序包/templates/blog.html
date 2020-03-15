@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="col-md-4" style="margin:auto">
+    <br>
+
+        <form action="{% url 'blogsearch' keyword %}" method="post" class="subscribe">
+            <div class="form-group">
+                <button type="submit"><span class="ion-ios-arrow-thin-right"></span></button>
+                <input type="text" id="search" name="search" placeholder="搜索" value="{{ keyword }}" class="form-control">
+            </div>
+            {% csrf_token %}
+        </form>
+    </div>
+    <section class="site-section bg-light">
+        <div class="container">
+            <p><a href="{% url 'blogpublish' %}" class="btn btn-primary btn-outline-primary btn-sm">发表博客</a>
+                <a href="/blog/?key=favor" class="btn btn-primary btn-outline-primary btn-sm">我的收藏</a>
+                <a href="/blog/?key=own  " class="btn btn-primary btn-outline-primary btn-sm">我的博客</a></p>
+        <p><br></p>
+
+
+            <div class="row mb-5">
+                {% for blog in blogs.object_list %}
+                    <div class="col-md-4">
+                        <div class="post-entry">
+                            <a href="{% url 'blogdetails' blog.id %}">
+                                <img src="{{ MEDIA_URL }}{{ blog.image }}" alt="Image placeholder" class="img-fluid">
+                            </a>
+                            <div class="body-text">
+                                <h3 class="mb-3">
+                                    <a href="{% url 'blogdetails' blog.id %}">{{ blog.title }}</a>
+                                </h3>
+                                <p class="mb-4">{{ blog.user.username }}</p>
+                                <p><a href="{% url 'blogdetails' blog.id %}"
+                                      class="btn btn-primary btn-outline-primary btn-sm">查看更多</a></p>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+
+
+            </div>
+
+
+            <div class="col-md-12 text-center">
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+                        {#       显示上一页       #}
+                        {% if blogs.has_previous %}     {# 有下一页 #}
+                            <li class="page-item">
+                                <a class="page-link"
+                                   href="?{{ blogs.previous_page_number.querystring }}">上一页</a>
+                            </li>
+                        {% endif %}
+
+                        {% for page in blogs.pages %}
+                            {% if page %}
+                                {% ifequal page blogs.number %}
+                                    {# 如果是当前页，填充自己逻辑#}
+                                    <li class="active"><a href="?{{ page.querystring }}">{{ page }}</a></li>
+                                {% else %}
+                                    <li><a href="?{{ page.querystring }}" class="page-link">{{ page }}</a></li>
+                                {% endifequal %}
+                            {% else %}
+                                <li class="none"><a href="">...</a></li>
+                            {% endif %}
+                        {% endfor %}
+                        {% if blogs.has_next %}
+                            {#   下一页逻辑    #}
+                            <li class="page-item">
+                                <a class="page-link" href="?{{ blogs.next_page_number.querystring }}">下一页</a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </nav>
+            </div>
+
+            {#    分页逻辑     #}
+        </div>
+    </section>
+    <!-- END section -->
+{% endblock %}

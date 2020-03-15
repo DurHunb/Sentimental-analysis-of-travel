@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Wanderlust</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700,900|Rubik:300,400,700" rel="stylesheet">
+
+    <link rel="stylesheet" href="/static/css/bootstrap.css">
+    <link rel="stylesheet" href="/static/css/animate.css">
+    <link rel="stylesheet" href="/static/css/owl.carousel.min.css">
+
+    <link rel="stylesheet" href="/static/fonts/ionicons/css/ionicons.min.css">
+    <link rel="stylesheet" href="/static/fonts/fontawesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/static/css/magnific-popup.css">
+
+    <!-- Theme Style -->
+    <link rel="stylesheet" href="/static/css/style.css">
+  </head>
+  <body>
+    
+    <header role="banner">
+     
+      <nav class="navbar navbar-expand-md navbar-dark bg-light">
+        <div class="container">
+          <a class="navbar-brand" href="index.html">Wanderlust</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample05" aria-controls="navbarsExample05" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse navbar-light" id="navbarsExample05">
+            <ul class="navbar-nav ml-auto pl-lg-5 pl-0">
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'index' %}">首页</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link " href="{% url 'spots' %}" >评论荟萃</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'blog' %}">旅行博客</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link " href="{% url 'travel' %}">高效搜罗</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="{% url 'contact' %}">问题反馈</a>
+              </li>
+
+                {% if request.user.is_authenticated %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link">欢迎您，{{ request.user.username }}</a>
+                        <div class="dropdown-menu" aria-labelledby="dropdown04">
+                                <a class="dropdown-item" href="{% url 'logout' %}">注销</a>
+                        </div>
+                    </li>
+                {% else %}
+                    <li class="nav-item cta">
+                        <a class="nav-link" href="{% url 'login' %}"><span>登录</span></a>
+                    </li>
+                {% endif %}
+            </ul>
+            
+          </div>
+        </div>
+      </nav>
+    </header>
+    <!-- END header -->
+
+    <section class="site-hero site-hero-innerpage overlay" data-stellar-background-ratio="0.5" style="background-image: url(/static/images/big_image_1.jpg);">
+      <div class="container">
+        <div class="row align-items-center site-hero-inner justify-content-center">
+          <div class="col-md-12 text-center">
+
+            <div class="mb-5 element-animate">
+
+              <p>请往下翻页：有任何疑问，请与我们反馈！</p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- END section -->
+
+    <section class="site-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <h2 class="mb-5">填写表单</h2>
+          <form action="#" method="post">
+                  <div class="row">
+                    <div class="col-md-12 form-group">
+                      <label for="name">姓名</label>
+                      <input type="text" id="name" class="form-control ">
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12 form-group">
+                      <label for="phone">联系电话</label>
+                      <input type="text" id="phone" class="form-control ">
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12 form-group">
+                      <label for="email">电子邮箱</label>
+                      <input type="email" id="email" class="form-control ">
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12 form-group">
+                      <label for="message">问题框
+                      <p>(如有任何疑问请联系我们。我们需要您的宝贵意见以不断完善此网站！感谢您的支持。)</p></label>
+                      <textarea name="message" id="message" class="form-control " cols="30" rows="8"></textarea>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6 form-group">
+                      <input type="submit"  value="提交反馈" class="btn btn-primary">
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <div class="col-md-1"></div>
+              <div class="col-md-5">
+                 <div class="agile-map">
+                     <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2568.3543743101854!2d121.41457403754059!3d31.203458964725417!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x35b2651248dcc7cd%3A0xbc27e4d61bdbcd1!2z5Lic5Y2O5aSn5a2m!5e1!3m2!1szh-CN!2sin!4v1553519659711" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+                 </div>
+                 <div class="left-agileits">
+                     <h3>地址</h3>
+                     <ul>
+                         <li><span class="glyphicon glyphicon-home" aria-hidden="true"></span>上海市长宁区天山路街道东华大学延安西路校区1882号</li>
+                         <li><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span><a href="http://www.dhu.edu.cn/">东华教务处</a></li>
+                         <li><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> +86 21 6237 9160</li>
+                     </ul>
+                 </div>
+              </div>
+        </div>
+      </div>
+    </section>
+    <!-- END section -->
+
+
+
+   
+    <footer class="site-footer">
+      <div class="container">
+        <div class="row mb-5">
+          <div class="col-md-4">
+            <h3>联系方式</h3>
+            <p class="lead"><a href="tel://">+ 138 6046 8489</a></p>
+            <p><a href="mailto:kokoro7curie@gmail.com"> kokoro7curie@gmail.com</a></p>
+
+          </div>
+          <div class="col-md-4">
+            <h3>如何找到我们</h3>
+            <p>关注我们团队的社交平台</p>
+            <p>
+              <a href="#" class="pl-0 p-3"><span class="fa fa-facebook"></span></a>
+              <a href="#" class="p-3"><span class="fa fa-twitter"></span></a>
+              <a href="https://www.instagram.com/curie_jockey/" class="p-3"><span class="fa fa-instagram"></span></a>
+              <a href="#" class="p-3"><span class="fa fa-vimeo"></span></a>
+              <a href="#" class="p-3"><span class="fa fa-youtube-play"></span></a>
+            </p>
+          </div>
+          <div class="col-md-4">
+            <h3>如何联系我们</h3>
+            <p>发送邮件</p>
+            <form action="#" class="subscribe">
+              <div class="form-group">
+                <button type="submit"><span class="ion-ios-arrow-thin-right"></span></button>
+                <input type="email" class="form-control" placeholder="Enter email">
+              </div>
+              
+            </form>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-md-7 text-center">
+            &copy; 
+Copyright &copy;<script>document.write(new Date().getFullYear());</script>
+              by RB,Irene and Curie
+
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- END footer -->
+    
+    <!-- loader -->
+    <div id="loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#f4b214"/></svg></div>
+
+    <script src="/static/js/jquery-3.2.1.min.js"></script>
+    <script src="/static/js/jquery-migrate-3.0.0.js"></script>
+    <script src="/static/js/popper.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/js/owl.carousel.min.js"></script>
+    <script src="/static/js/jquery.waypoints.min.js"></script>
+    <script src="/static/js/jquery.stellar.min.js"></script>
+
+    <script src="/static/js/jquery.magnific-popup.min.js"></script>
+    <script src="/static/js/magnific-popup-options.js"></script>
+
+    <script src="/static/js/main.js"></script>
+    <a href="#" id="toTop" style="display: inline;"><span id="toTopHover" style="opacity: 0;"></span>To Top</a>
+  </body>
+</html>

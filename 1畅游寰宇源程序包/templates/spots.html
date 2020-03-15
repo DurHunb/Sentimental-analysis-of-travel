@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% block content %}
+<!--
+
+-->
+    <section class="site-section">
+
+        <div class="container">
+        <p><a href="/spots/?type=景点"
+                                      class="btn btn-primary btn-sm">景点</a>
+            <a href="/spots/?type=酒店"
+                                      class="btn btn-primary btn-sm">酒店</a></p>
+            <div class="row">
+                {% for spot in all_spots.object_list %}
+                    <div class="col-md-4 mb-4">
+                        <div class="media d-block room mb-0">
+                            <figure>
+                                <img src="{{ MEDIA_URL }}{{ spot.0.image }}" alt="Generic placeholder image"
+                                     class="img-fluid">
+                            </figure>
+                            <div class="media-body">
+                                <h3 class="mt-0"><a href="#">{{ spot.0.name }}</a></h3>
+                                <p> 综合情感指数：{{ spot.1 }}</p>
+                                <p>{{ spot.0.desc }} </p>
+                                <p><a href="{% url 'spotcomments' spot.0.name %}"
+                                      class="btn btn-primary btn-sm">点击查看评论</a></p>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <section class="site-section bg-light">
+        <div class="container">
+            <div class="col-md-12 text-center">
+                <nav aria-label="Page navigation example">
+
+
+                    <ul class="pagination">
+                        {#       显示上一页       #}
+                        {% if all_spots.has_previous %}     {# 有下一页 #}
+                            <li class="page-item">
+                                <a class="page-link"
+                                   href="?{{ all_spots.previous_page_number.querystring }}">上一页</a>
+                            </li>
+                        {% endif %}
+
+                        {% for page in all_spots.pages %}
+                            {% if page %}
+                                {% ifequal page all_spots.number %}
+                                    {# 如果是当前页，填充自己逻辑#}
+                                    <li class="active"><a href="?{{ page.querystring }}">{{ page }}</a></li>
+                                {% else %}
+                                    <li><a href="?{{ page.querystring }}" class="page-link">{{ page }}</a></li>
+                                {% endifequal %}
+                            {% else %}
+                                <li class="none"><a href="">...</a></li>
+                            {% endif %}
+                        {% endfor %}
+                        {% if all_spots.has_next %}
+                            {#   下一页逻辑    #}
+                            <li class="page-item">
+                                <a class="page-link" href="?{{ all_spots.next_page_number.querystring }}">下一页</a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+
+
+
