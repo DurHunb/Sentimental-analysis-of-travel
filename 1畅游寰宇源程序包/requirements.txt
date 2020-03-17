@@ -1,4 +1,4 @@
-python 3.7
+python== 3.7
 backports.csv==1.0.7
 beautifulsoup4==4.7.1
 bs4==0.0.1
