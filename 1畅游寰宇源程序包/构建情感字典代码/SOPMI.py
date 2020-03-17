@@ -1,8 +1,3 @@
-#!/usr/bin/env python3
-# coding: utf-8
-# File: so-pmi.py
-# Author: lhy<lhy_in_blcu@126.com,https://huangyong.github.io>
-# Date: 18-4-4
 
 from pyltp import SentenceSplitter
 import jieba.posseg as pseg
