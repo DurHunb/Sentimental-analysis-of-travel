@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'DjangoUeditor',
     'captcha',
     # # 验证码配置
+    #已验证
     # 'captcha',
     # 分页功能app
     # 'pure_pagination',
