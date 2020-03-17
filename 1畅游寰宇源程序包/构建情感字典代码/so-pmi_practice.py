@@ -1,4 +1,3 @@
-import sys
 from pyltp import SentenceSplitter
 import jieba.posseg as pseg
 import jieba
