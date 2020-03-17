@@ -12,7 +12,7 @@ class SoPmi:
 
 
 
-    '''统计搭配次数'''
+    #计算次数
     def collect_cowords(self, sentiment_path, seg_data):
         def check_words(sent):
             if set(sentiment_words).intersection(set(sent)):
@@ -43,7 +43,7 @@ class SoPmi:
                                     cowords_list.append(context[index_pre] + '@' + context[index_post])
         return cowords_list
 
-    '''计算So-Pmi值'''
+    #计算So-Pmi值
     def collect_candiwords(self, seg_data, cowords_list, sentiment_path):
 
 		def compute_mi(p11, p21, p1,p2):
@@ -52,8 +52,7 @@ class SoPmi:
 				return number
 			else:
 				return 0
-        
-        '''条件场'''
+        #设置条件
         def collect_worddict(hitt_pos,hitt_neg,hitt_P,hitt_N):
             H=hitt_pos+hitt_neg
 			if (hitt_pos/H)>0.89 and (hitt_neg/H)>0.89
@@ -70,7 +69,7 @@ class SoPmi:
 			  res=urllib2.urlopen(("http://www.baidu.com/s?"+urllib.urlencode(p)+"&pn={0}&cl=3&rn=100").format(pn))
 			  html=res.read()
 			  return html
-        '''计算网页值'''
+        #代入到网页计算
         def compute_sopmi(candi_words, pos_words, neg_words, word_dict, co_dict, all):
             #定义请求头信息
 			headers = {"User-Agent" : "Mozilla......"}
@@ -101,7 +100,7 @@ class SoPmi:
         pmi_dict = compute_sopmi(candi_words, pos_words, neg_words, word_dict, co_dict, all)
         return pmi_dict
 
-    '''保存结果'''
+    #保存
     def save_candiwords(self, pmi_dict, candipos_path, candineg_path):
         def get_tag(word):
             if word:
@@ -126,8 +125,8 @@ class SoPmi:
         f_neg.close()
         f_pos.close()
         return
-
-    def sopmi(self):
+ 
+    def sopmi(self):#好像有点问题，下次记得看
         print('step 1/4:...seg corpus ...')
         start_time  = time.time()
         seg_data = self.seg_corpus(self.train_path, self.sentiment_path)
@@ -146,7 +145,7 @@ class SoPmi:
         end_time = time.time()
         print('finished! cost {0}'.format(end_time - start_time))
 
-def test():
+def test():#冲吧
     sopmier = SoPmi()
     sopmier.sopmi()
 
