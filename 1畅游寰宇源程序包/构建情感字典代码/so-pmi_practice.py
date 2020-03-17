@@ -71,19 +71,19 @@ class SoPmi:
 			  return html
         #代入到网页计算
         def compute_sopmi(candi_words, pos_words, neg_words, word_dict, co_dict, all):
-            #定义请求头信息
+            #定义请求的头信息
 			headers = {"User-Agent" : "Mozilla......"}
 
 			#用户输入查询关键字
 			keyword = raw_input("请输入要查询的关键字:")
 
-			#对用户输入的关键字做变为字典处理
+			#变为字典处理
 			wd = {'wd' : keyword}
 
 			#对关键字进行url编码处理
 			wd = urllib.urlencode(wd)
 
-			#拼接完整url
+			#拼接url
 			fullurl = url + wd
 
 			#构建请求对象
