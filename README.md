@@ -3,13 +3,13 @@ This is a website that ranks attractions through sentiment analysis.
 
 - Based on Django 2.0.5
 
-RB feel great when he designed the sentimental analysis website
+RB feels very good after finishing this website, especially won the award.
 
-This is a website made by sentimental analysis based on sentimental directory.
+This project name is Sentimental-analysis-of-travel ,which uses sentimental analysis based on sentimental directory to help people people avoid some difficults in travel.
 
-There is some of travel sentimental directory made by RB, and thank you for my parter who designed the website with me. 
+Travel sentimental directories and some of website are designed  by RB, and thanks for my parter who designed the website with me. 
 
-Though the website is simple, but it takes us long time. I will be pround of me that I designed the travel sentimental directory.
+This project is very rudimentary, if you can leave a comment, I will be grateful. In the future, I will also take the time to perfect it.
 
 Thank you for visiting. 
 
